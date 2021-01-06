@@ -9,14 +9,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const port = process.env.PORT || 3000;        // seteamos el puerto
-const dbCnn = process.env.MONGO ||  "mongodb://localhost:27017/test"
+const dbCnn = process.env.MONGO_URL ||  "mongodb://localhost:27017/test"
 
 app.get("/",(_req, res)=>{ 
     mongoose.connect(dbCnn, {useNewUrlParser:true},(err)=>{
         if(err){
             res.status(500).send("Error de conexión a la bd: "+ err)
         }else{
-            res.send("hello world!!!")
+            res.send("hello world!!!!")
         }
     })
     
