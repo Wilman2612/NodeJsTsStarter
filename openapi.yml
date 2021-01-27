@@ -1,53 +1,119 @@
-openapi: 3.0.3
-info:
-  title: Backend Libros
-  description: Backend API example for Books Project
-  termsOfService: http://swagger.io/terms/
-  contact:
-    email: wilman2612@gmail.com
-  license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-  version: 1.0.0
-externalDocs:
-  description: Find out more about Swagger
-  url: http://swagger.io
+openapi: "3.0.2"
+info: 
+  title: Simple Login
+  version: "1.0"
+  contact: 
+    email: "wilman262@gmail.com"
+
 servers:
-- url: /api/v1
- 
-tags:
-  - name: greeting
-    description: Greeting APIs
- 
-paths:
-  /hello:
-    get:
-      description: Returns 'Hello <name>/stranger!!!' to the caller
-      tags: 
-        - greeting
-      operationId: hello
-      parameters:
-      - name: name
-        required: false
-        in: query
-        description: The name of a caller
-        schema:
+  - url: http://localhost:3000/api/v1
+
+components:
+  schemas:
+    User:
+      allOf: # Combines the BasicErrorModel and the inline model
+        - $ref: "#/components/schemas/NewUser"
+        - type: object
+          properties:
+            followers:
+              type: number
+            following:
+              type: array
+              items:
+                type: string
+            id:
+              type: string
+            preferences:
+              items:
+                type: string
+              type: array
+            registrationType:
+              enum:
+                - local
+                - Facebook
+                - Twitter
+              type: string
+
+    NewUser:
+      properties:
+        email:
           type: string
+        facebook:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        perfilImage:
+          type: string
+        surname:
+          type: string
+        username:
+          type: string
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - username
+
+    AuthResponse:
+      additionalProperties: false
+      properties:
+        data:
+          type: string
+        message:
+          type: string
+      required:
+        - message
+        - data
+      type: object
+
+paths:
+  /auth/login:
+    post:
+      summary: Creates a bearer token for a user
+      tags: [Authentication]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
       responses:
-        200:
-          description: Success
+        "200":
+          description: Genereted jwt token.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HelloResponse'
- 
-components:
-  schemas:
-    HelloResponse:
-      type: object
-      additionalProperties: false
-      required:
-        - message
-      properties:
-        message:
-          type: string
+                $ref: "#/components/schemas/AuthResponse"
+  /auth/signup:
+    post:
+      summary: Creates a new user
+      tags: [Authentication]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewUser"
+            example:
+              name : Wilman
+              email: "wilman262@gmail.com"
+              username: Wilch
+              password: "123456789"
+      responses:
+        "201":
+          description: Genereted jwt token.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"

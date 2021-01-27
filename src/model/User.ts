@@ -1,11 +1,9 @@
-import { RegistrationTypes } from './RegistrationTypes'
-
-export default class User {
+export default interface User {
   id: string
 
   name: string
 
-  surname: string
+  surname?: string
 
   username: string
 
@@ -13,17 +11,13 @@ export default class User {
 
   email: string
 
-  registrationType: RegistrationTypes
-
-  writer: boolean
+  registrationType: 'local' | 'Facebook' | 'Twitter'
 
   perfilImage: string
 
-  followers: number
+  followers?: number
 
-  following: User[]
+  following?: User[]
 
-  preferences: string[]
-
-  facebook: string
+  preferences?: string[]
 }
