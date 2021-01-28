@@ -4,8 +4,10 @@ import Users from 'services/Users'
 import * as jwt from '../lib/jwt'
 
 export interface AuthResponse {
+  status: number
   message: string
   data: string
+  id: string
 }
 
 export interface AccessToken {
@@ -24,7 +26,9 @@ export default class AuthController {
   login(userId: string) {
     const response: AuthResponse = {
       data: this.getToken(userId),
-      message: 'Inicio de sesión correcto'
+      message: 'Inicio de sesión correcto',
+      status: 200,
+      id: userId
     }
     return response
   }
@@ -32,9 +36,9 @@ export default class AuthController {
   async signup(user: User) {
     const founded = await this.users.getBy({ username: user.username } as User)
     if (founded) throw new Error('User already exists')
-    const newUser: User = { ...user, password: await Encryption.hashPassword(user.password) }
+    const newUser: User = { ...user, password: await Encryption.hashPassword(user.password!) }
     const id = await this.users.create(newUser)
-    return { data: this.getToken(id), message: 'User created' }
+    return { data: this.getToken(id), message: 'User created', status: 201, id } as AuthResponse
   }
 
   getToken = (id: string) => {

@@ -11,7 +11,7 @@ servers:
 components:
   schemas:
     User:
-      allOf: # Combines the BasicErrorModel and the inline model
+      allOf: 
         - $ref: "#/components/schemas/NewUser"
         - type: object
           properties:
@@ -21,7 +21,7 @@ components:
               type: array
               items:
                 type: string
-            id:
+            _id:
               type: string
             preferences:
               items:
@@ -64,14 +64,33 @@ components:
           type: string
         message:
           type: string
-      required:
-        - message
-        - data
+        status:
+          type: integer
+        id:
+          type: string
       type: object
+
+    Entity:
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+        status:
+          type: integer
+      type: object
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
 
 paths:
   /auth/login:
     post:
+      security:
+        - {}
       summary: Creates a bearer token for a user
       tags: [Authentication]
       requestBody:
@@ -97,6 +116,8 @@ paths:
                 $ref: "#/components/schemas/AuthResponse"
   /auth/signup:
     post:
+      security:
+        - {}
       summary: Creates a new user
       tags: [Authentication]
       requestBody:
@@ -117,3 +138,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AuthResponse"
+
+  /user:
+    get:
+      description: Obtiene un usuario
+      tags: [User]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf: 
+                  - $ref: "#/components/schemas/Entity"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        $ref: "#/components/schemas/User"
+security:
+  - bearerAuth: ["/auth/login"]
+  - {}  
+

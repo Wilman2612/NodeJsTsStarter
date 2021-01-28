@@ -1,5 +1,5 @@
 export default interface User {
-  id: string
+  _id: string
 
   name: string
 
@@ -7,7 +7,7 @@ export default interface User {
 
   username: string
 
-  password: string
+  password?: string
 
   email: string
 

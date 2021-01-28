@@ -1,4 +1,6 @@
 import * as express from 'express'
+import configAuth from 'libs/passport'
+import * as User from 'routes/User'
 import * as Auth from './routes/Auth'
 
 export default function Load(app: express.Application) {
@@ -11,5 +13,8 @@ export default function Load(app: express.Application) {
 
   const router = express.Router()
   app.use('/api/v1', router)
-  Auth.Route(app, router)
+
+  configAuth(app)
+  Auth.Route(router)
+  User.Route(router)
 }
