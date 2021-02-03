@@ -1,0 +1,12 @@
+{
+    "login": {
+        "success":"Log In Successful",
+        "usrnmNotFnd": "Username does not exists",
+        "accIncorrect":"Username or password are incorrect"
+    },
+    "usrnmNEmpty": "Username cannot be empty",
+    "signup":{
+        "success": "Signed in successful",
+        "usrExists": "Username already exists"
+    }
+}

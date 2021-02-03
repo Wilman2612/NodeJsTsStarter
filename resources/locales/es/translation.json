@@ -1,0 +1,12 @@
+{
+  "login": {
+    "success": "Inicio de sesión correcto",
+    "usrnmNotFnd": "El usuario no existe",
+    "accIncorrect": "El nombre de usuario o las contraseña son incorrectos"
+  },
+  "usrnmNEmpty": "El nombre de usuario no puede estar vacio",
+  "signup": {
+    "signedin": "Registrado correctamente",
+    "usrExists": "El nombre de usuario ya existe"
+  }
+}

@@ -26,7 +26,7 @@ export default class AuthController {
   login(userId: string) {
     const response: AuthResponse = {
       data: this.getToken(userId),
-      message: 'Inicio de sesión correcto',
+      message: 'login.success',
       status: 200,
       id: userId
     }
@@ -35,10 +35,10 @@ export default class AuthController {
 
   async signup(user: User) {
     const founded = await this.users.getBy({ username: user.username } as User)
-    if (founded) throw new Error('User already exists')
+    if (founded) throw new Error('signup.usrExists')
     const newUser: User = { ...user, password: await Encryption.hashPassword(user.password!) }
     const id = await this.users.create(newUser)
-    return { data: this.getToken(id), message: 'User created', status: 201, id } as AuthResponse
+    return { data: this.getToken(id), message: 'signup.success', status: 201, id } as AuthResponse
   }
 
   getToken = (id: string) => {

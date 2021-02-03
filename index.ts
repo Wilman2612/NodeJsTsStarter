@@ -1,6 +1,6 @@
-import * as express from 'express'
+import express from 'express'
 import * as dotenv from 'dotenv'
-import * as morgan from 'morgan'
+import morgan from 'morgan'
 import * as swagger from 'libs/swagger'
 import Load from './src/app'
 
