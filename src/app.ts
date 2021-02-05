@@ -4,6 +4,8 @@ import * as User from 'routes/User'
 import cookieParser from 'cookie-parser'
 import i18next from 'libs/i18next'
 import * as Auth from './routes/Auth'
+import './@types'
+import errormiddleware from './middlewares/errormiddleware'
 
 export default function Load(app: express.Application) {
   app.get('/', function (_req, res) {
@@ -22,4 +24,6 @@ export default function Load(app: express.Application) {
   configAuth(app)
   Auth.Route(router)
   User.Route(router)
+
+  app.use(errormiddleware)
 }

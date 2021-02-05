@@ -2,11 +2,20 @@
     "login": {
         "success":"Log In Successful",
         "usrnmNotFnd": "Username does not exists",
-        "accIncorrect":"Username or password are incorrect"
+        "accIncorrect":"Username or password are incorrect",
+        "noUsrNm" : "Username cannot be empty" , 
+        "noPass" : "Password cannot be empty" , 
+        "passEmoji" : "Password cannot contains non-unicode characters" , 
+        "passShort" : "Password is too short" , 
+        "passLong" : "Password is too long"
     },
-    "usrnmNEmpty": "Username cannot be empty",
     "signup":{
         "success": "Signed in successful",
-        "usrExists": "Username already exists"
+        "usrExists": "Username already exists",
+        "noEmail": "Email cannot be empty",
+        "noName" : "Name cannot be empty"
+    },
+    "user":{
+        "NotExist": "User does not exists"
     }
 }

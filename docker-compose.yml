@@ -4,7 +4,7 @@ services:
   app:
     build: 
       context: ./
-      dockerfile: ./build/Dockerfile
+      dockerfile: ./build/Dockerfile.dev
     environment:
       MONGO_URL: "mongodb://db:27017/test"
     depends_on:
@@ -17,3 +17,8 @@ services:
 
   db:
     image: mongo
+    volumes: 
+      - mongo_database:/data/db
+
+volumes:
+  mongo_database:

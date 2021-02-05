@@ -7,13 +7,14 @@ export function Route(root: express.Router) {
   const controller = new UserController()
   root.use('/user', router)
   root.use(AuthMiddleware)
-  router.get('/{:id}', async function (req: express.Request, res: express.Response) {
+  router.get('/:id', async function (req: express.Request, res: express.Response) {
+    console.log(req.params.id)
     const result = await controller.getUser(req.params.id)
-    res.json(result.status).json(result)
+    res.status(result.status).json(result)
   })
 
-  router.patch('/{:id}', async function (req: express.Request, res: express.Response) {
+  router.patch('/:id', async function (req: express.Request, res: express.Response) {
     const result = await controller.updateUser(req.params.id, req.body)
-    res.json(result.status).json(result)
+    res.status(result.status).json(result)
   })
 }

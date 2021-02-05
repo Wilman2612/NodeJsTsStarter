@@ -11,13 +11,5 @@ export default interface User {
 
   email: string
 
-  registrationType: 'local' | 'Facebook' | 'Twitter'
-
   perfilImage: string
-
-  followers?: number
-
-  following?: User[]
-
-  preferences?: string[]
 }

@@ -1,6 +1,7 @@
 import User from 'models/User'
 import Users from 'services/Users'
 import * as Encryption from 'libs/bcrypt'
+import errors from 'http-errors'
 import Entity from './reponses/entity'
 
 export default class UserController {
@@ -13,6 +14,7 @@ export default class UserController {
   async getUser(id: string) {
     const user = await this.users.get(id)
     user.password = undefined
+    if (!user) throw new errors.BadRequest('user.NotExist')
     return { status: 200, data: user } as Entity
   }
 

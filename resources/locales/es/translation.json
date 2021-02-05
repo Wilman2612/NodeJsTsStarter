@@ -2,11 +2,20 @@
   "login": {
     "success": "Inicio de sesión correcto",
     "usrnmNotFnd": "El usuario no existe",
-    "accIncorrect": "El nombre de usuario o las contraseña son incorrectos"
+    "accIncorrect": "El nombre de usuario o las contraseña son incorrectos",
+    "noUsrNm": "El nombre de usuario no puede estar vacio",
+    "noPass": "La contraseña no puede estar vacia",
+    "passEmoji": "La contraseña no puede contener caracteres no unicode",
+    "passShort": "La contraseña es muy corta",
+    "passLong": "La contraseña es muy larga"
   },
-  "usrnmNEmpty": "El nombre de usuario no puede estar vacio",
   "signup": {
     "signedin": "Registrado correctamente",
-    "usrExists": "El nombre de usuario ya existe"
+    "usrExists": "El nombre de usuario ya existe",
+    "noEmail": "El email no puede estar vacio",
+    "noName" : "El nombre no puede estar vacio"
+  },
+  "user":{
+      "NotExist": "El usuario especificado no existe"
   }
 }

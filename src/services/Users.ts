@@ -18,9 +18,10 @@ export default class Users {
     return movie
   }
 
-  async getBy(filter: User) {
-    const movie = await this.mongoDb.getBy(filter)
-    return movie
+  async getBy(...filter: User[]) {
+    if (filter.length === 1) return this.mongoDb.getBy(filter[0])
+    if (filter.length > 1) return this.mongoDb.getBy({ $or: filter })
+    return {} as User
   }
 
   async create(data: User) {

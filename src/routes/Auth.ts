@@ -2,7 +2,7 @@ import express from 'express'
 import User from 'models/User'
 import multer from 'multer'
 import AuthController from 'src/controllers/authController'
-import AuthMiddleware from 'src/middlewares/authmiddleware'
+import { authenticate } from 'src/middlewares/authmiddleware'
 
 export function Route(root: express.Router) {
   const router = express.Router()
@@ -14,7 +14,7 @@ export function Route(root: express.Router) {
   router.post(
     '/login',
     upload.none(),
-    AuthMiddleware,
+    authenticate('local'),
     function (req: express.Request, res: express.Response) {
       const response = controller.login(req.user! as string)
       res.status(response.status).json({ ...response, message: req.t(response.message) })
