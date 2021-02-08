@@ -1,6 +1,6 @@
 import * as express from 'express'
-import UserController from 'src/controllers/userController'
-import AuthMiddleware from 'src/middlewares/authmiddleware'
+import UserController from 'controllers/userController'
+import AuthMiddleware from 'middlewares/authmiddleware'
 
 export function Route(root: express.Router) {
   const router = express.Router()

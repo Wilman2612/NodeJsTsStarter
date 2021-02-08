@@ -1,0 +1,26 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run docker-compose up",
+            "type": "docker-compose",
+            "dockerCompose": {
+              "up": {
+                "detached": true,
+                "build": true
+              },
+              "files": [
+                "${workspaceFolder}/docker-compose.yml",
+                "${workspaceFolder}/docker-compose.debug.yml"
+              ],
+              "address": "localhost",
+                "localRoot": "$-workspaceFolder",
+                 "sourceMapPathOverrides":{
+                 "/app/*": "$-workspaceRoot-/*"
+                 },
+            }
+          }
+    ]
+}

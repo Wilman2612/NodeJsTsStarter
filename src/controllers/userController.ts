@@ -1,8 +1,8 @@
-import User from 'models/User'
+import User from 'model/User'
 import Users from 'services/Users'
-import * as Encryption from 'libs/bcrypt'
+import * as Encryption from 'lib/bcrypt'
 import errors from 'http-errors'
-import Entity from './reponses/entity'
+import Entity from '@reponses/entity'
 
 export default class UserController {
   users: Users

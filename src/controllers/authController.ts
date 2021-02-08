@@ -1,20 +1,10 @@
-import User from 'models/User'
-import * as Encryption from 'libs/bcrypt'
+import User from 'model/User'
+import * as Encryption from 'lib/bcrypt'
 import Users from 'services/Users'
 import errors from 'http-errors'
-import * as jwt from '../lib/jwt'
-
-export interface AuthResponse {
-  status: number
-  message: string
-  data: string
-  id: string
-}
-
-export interface AccessToken {
-  usr: string
-  tmo: string
-}
+import * as jwt from 'lib/jwt'
+import AuthResponse from '@reponses/authResponse'
+import { AccessToken } from './Dto/accessToken'
 
 const ranges = [
   '\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF

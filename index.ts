@@ -1,7 +1,8 @@
+import 'module-alias/register'
 import express from 'express'
 import * as dotenv from 'dotenv'
 import morgan from 'morgan'
-import * as swagger from 'libs/swagger'
+
 import Load from './src/app'
 
 dotenv.config()
@@ -11,7 +12,6 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(morgan('tiny'))
-swagger.config(app)
 
 const port = process.env.PORT || 3000 // seteamos el puerto
 

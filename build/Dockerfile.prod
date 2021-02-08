@@ -1,19 +1,21 @@
 FROM node:14 as builder
 COPY ["package.json","package-lock.json","/usr/src/"]
 WORKDIR /usr/src/
-RUN npm ci --only=production
+RUN npm i --only=production
 COPY ["./","/usr/src/"]
-RUN npm ci --only=development
-
+RUN npm i --only=development
 RUN npm run test
-RUN tsc 
+RUN npx tsc -p .
+RUN ls
 
 #Productive image
 FROM node:14
 COPY ["package.json","package-lock.json","/usr/src/"]
 WORKDIR /usr/src/
-RUN npm ci --only=production
-COPY --from=builder ["/usr/src/build/index.js","/usr/src/build/src","/usr/src/"]
-
+RUN npm i --only=production
+COPY --from=builder ["/usr/src/resources","/usr/src/resources"]
+COPY --from=builder ["/usr/src/dist","/usr/src/dist"]
+COPY --from=builder ["/usr/src/.env","/usr/src/openapi.yml","/usr/src/"]
+RUN ls
 EXPOSE 3000
-CMD ["node", "index.js"]
+CMD ["node", "./dist/index.js"]

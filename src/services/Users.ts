@@ -1,5 +1,5 @@
-import MongoLib from 'src/lib/mongo'
-import User from '../model/User'
+import MongoLib from 'lib/mongo'
+import User from 'model/User'
 
 export default class Users {
   mongoDb: MongoLib<User>

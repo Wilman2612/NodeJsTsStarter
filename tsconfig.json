@@ -9,8 +9,8 @@
       "checkJs": true,                       /* Report errors in .js files. */
       "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
       "declaration": false,                   /* Generates corresponding '.d.ts' file. */
-      "sourceMap": false,                     /*Generates corresponding '.map' file. */
-      "outDir": "./build",                   /* Redirect output structure to the directory. */
+      "sourceMap": true,                     /*Generates corresponding '.map' file. */
+      "outDir": "./dist",                   /* Redirect output structure to the directory. */
       "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
       "removeComments": true,                /* Do not emit comments to output. */
       /* "noEmit": true,                        Do not emit outputs. WHYYYYYYYYYYYY????!!!!!*/
@@ -34,12 +34,9 @@
   
       /* Module Resolution Options */           
       "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-      "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
+      "baseUrl": "src",                       /* Base directory to resolve non-absolute module names. */
       "paths": {
-        "libs/*":["./src/lib/*"], 
-        "models/*":["./src/model/*"],
-        "routes/*":["./src/routes/*"],
-        "services/*":["./src/services/*"]  
+        "@reponses/*":["./controllers/responses/*"], 
         },                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
       /*"rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
       "typeRoots": ["./src/@types", 
@@ -54,6 +51,7 @@
   
       /* Experimental Options */                
       "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
-      "emitDecoratorMetadata": true          /* Enables experimental support for emitting type metadata for decorators. */
+      "emitDecoratorMetadata": true,          /* Enables experimental support for emitting type metadata for decorators. */
+      
     }
   }

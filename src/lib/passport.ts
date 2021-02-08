@@ -1,10 +1,11 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, StrategyOptions, ExtractJwt } from 'passport-jwt'
-import User from 'src/model/User'
-import Users from 'src/services/Users'
+import User from 'model/User'
+import Users from 'services/Users'
 import * as express from 'express'
-import { AccessToken, validateLogin } from 'src/controllers/authController'
+import { validateLogin } from 'controllers/authController'
+import { AccessToken } from 'controllers/Dto/accessToken'
 import * as Encryption from './bcrypt'
 
 export default function configAuth(app: express.Application) {
@@ -29,7 +30,6 @@ export default function configAuth(app: express.Application) {
   passport.use(
     'local',
     new LocalStrategy(async function (username, password, done) {
-      console.log('local')
       const err = validateLogin({ username, password } as User)
       if (err) return done(null, false, { message: err })
       const founded = await users.getBy({ username } as User)

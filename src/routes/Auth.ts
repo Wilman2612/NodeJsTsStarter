@@ -1,8 +1,8 @@
 import express from 'express'
-import User from 'models/User'
+import User from 'model/User'
 import multer from 'multer'
-import AuthController from 'src/controllers/authController'
-import { authenticate } from 'src/middlewares/authmiddleware'
+import AuthController from 'controllers/authController'
+import { authenticate } from 'middlewares/authmiddleware'
 
 export function Route(root: express.Router) {
   const router = express.Router()
