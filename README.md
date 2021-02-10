@@ -15,6 +15,30 @@ The main tools used are:
 - prettier / code formatter
 - vscode / IDE
 
+## Project Structure
+
+```
++---.vscode
++---build
++---resources
+|   +---images
+|   \---locales
+|       +---en
+|       \---es
+\---src
+    +---@types
+    |   +---express
+    |   \---Primitives
+    +---controllers
+    |   +---Dto
+    |   \---responses
+    +---lib
+    +---middlewares
+    +---model
+    +---routes
+    \---services
+```
+
 ## Usage
 
 First clone the remote repositorie to your desktop
@@ -29,5 +53,9 @@ cd awesomeProject
 docker-compose up
 ```
 If everything goes fine the server is running, to test it navigate to http://localhost:3000/api-docs/
+
 ![Screenshot](resources/images/screenshot.png)
 
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
